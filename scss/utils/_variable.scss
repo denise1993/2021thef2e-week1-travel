@@ -1,0 +1,11 @@
+$wide: '(min-width: 1800px)' !default; //大螢幕
+$desktop: '(min-width: 1200px)' !default; //桌機+筆電
+$tablet-landscape: '(min-width: 900px)' !default;  //pad 橫
+$tablet-portrait: '(min-width: 600px)' !default; //pad 直
+$phone: '(max-width: 600px) and (min-width: 320px)' !default; //手機
+//media Query => @mixin
+@mixin media($query: $phone) {
+  @media #{$query} {
+    @content; //佔位
+  }
+}

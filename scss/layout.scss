@@ -1,0 +1,9 @@
+@import "init";
+@import "./layout/header";
+@import "./layout/main";
+@import "./layout/footer";
+
+.wrapper{
+  max-width: 1000px;
+  margin: 0 auto;
+}
