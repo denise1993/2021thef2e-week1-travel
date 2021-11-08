@@ -176,26 +176,155 @@ html, body {
   word-wrap: break-word;
 }
 
+h1 {
+  font-size: 5.8rem;
+}
+
+h2 {
+  font-size: 3.3rem;
+}
+
+h3 {
+  font-size: 2.4rem;
+}
+
 p {
-  font-size: 2rem;
+  font-size: 1.6rem;
 }
 
-header {
-  height: 50px;
-  background-color: #ccc;
+img {
+  vertical-align: bottom;
 }
 
-main {
-  padding: 15px;
+i[class^="twicon"] {
+  font-size: 3rem;
 }
 
-footer {
-  height: 50px;
-  background-color: #ccc;
+.footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.wrapper {
-  max-width: 1000px;
+body {
+  background-color: #f6f6f6;
+}
+
+.wrapper_box {
+  max-width: 1440px;
   margin: 0 auto;
+}
+
+.wrapper_box .wrapper {
+  border: 1px solid red;
+}
+
+.main-menu {
+  height: 100vh;
+  position: relative;
+  background-color: #fff;
+  -webkit-box-shadow: 0px 14px 24px rgba(0, 0, 0, 0.04);
+          box-shadow: 0px 14px 24px rgba(0, 0, 0, 0.04);
+  border-bottom: 1px solid #ebebeb;
+}
+
+.main-menu .btn__switch {
+  width: 32px;
+  height: 32px;
+  background: #d9efea url(/images/icons.png) no-repeat;
+  background-size: 240% auto;
+  background-position: 50% 3px;
+  border-radius: 8px;
+  position: absolute;
+  left: 16px;
+  top: 16px;
+}
+
+.main-menu .logo-taiwan-travel {
+  display: block;
+  width: 101px;
+  height: 40px;
+  background: url(/images/logo-taiwan-travel.png) no-repeat;
+  background-size: auto 100%;
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+.main-menu .search-content {
+  width: 100%;
+  position: absolute;
+  top: 75px;
+}
+
+.main-menu .search-content__btns {
+  display: none;
+}
+
+.main-menu .search-content__lists {
+  font-size: 1.8rem;
+  padding: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.main-menu .search-content__list {
+  width: 30%;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border: 1px solid #3FB195;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.main-menu .search-content__list:nth-of-type(2n) {
+  border-color: gold;
+}
+
+.main-menu .search-content__keyword {
+  display: none;
+}
+
+.main-menu .type-menu {
+  display: none;
+}
+
+.header {
+  height: 152px;
+  background: #fff url(/images/master-vision.png) right bottom no-repeat;
+  background-size: auto 113px;
+  margin: 15px;
+  border-radius: 12px;
+  -webkit-box-shadow: 0px 14px 24px rgba(0, 0, 0, 0.04);
+          box-shadow: 0px 14px 24px rgba(0, 0, 0, 0.04);
+  position: relative;
+}
+
+.header > h1 {
+  font-size: 3.3rem;
+  font-weight: 700;
+  line-height: 3.6rem;
+  position: absolute;
+  left: 24px;
+  top: 40px;
+}
+
+.footer {
+  height: 36px;
+  background-color: #3FB195;
+  font-size: 12px;
+  color: #fff;
 }
 /*# sourceMappingURL=layout.css.map */

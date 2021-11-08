@@ -1,117 +1,66 @@
-(function(){
-  // curl -X GET --header 'Accept: application/json' --header 'Authorization: hmac username="357ef1ea44234d1c823d64dd419f858f", algorithm="hmac-sha1", headers="x-date", signature="VeK15DGOC3y5ZIX/YZxlgqVu7CQ="' --header 'x-date: Thu, 14 Oct 2021 08:21:39 GMT' --header 'Accept-Encoding: gzip' --compressed  'https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot?$top=30&$format=JSON'
+(async function(){
+  let allCity = [];
 
-  // https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot?$top=30&$format=JSON
+  await axios.all([getAllCity(), getAllScenicSpot(),getCurrentScenicSpot()])
+  .then(axios.spread((res1, res2, res3)=>{
+    allCity = res1.data;
+    console.log("res1: ", res1.data);
+    console.log("res2: ", res2.data);
+    console.log("res3: ", res3.data);
+  }));
+
+  // API 驗證用
+  function GetAuthorizationHeader() {
+    var AppID = '357ef1ea44234d1c823d64dd419f858f';
+    var AppKey = '-T4OuGMlwg5zohpazKvoCV28F48';
+
+    var GMTString = new Date().toGMTString();
+    var ShaObj = new jsSHA('SHA-1', 'TEXT');
+    ShaObj.setHMACKey(AppKey, 'TEXT');
+    ShaObj.update('x-date: ' + GMTString);
+    var HMAC = ShaObj.getHMAC('B64');
+    var Authorization = 'hmac username=\"' + AppID + '\", algorithm=\"hmac-sha1\", headers=\"x-date\", signature=\"' + HMAC + '\"';
+
+    return { 'Authorization': Authorization, 'X-Date': GMTString /*,'Accept-Encoding': 'gzip'*/ }; //如果要將js運行在伺服器，可額外加入 'Accept-Encoding': 'gzip'，要求壓縮以減少網路傳輸資料量
+  }
+
+  // 取得縣市
+  function getAllCity() {
+    return axios({
+      method: 'get',
+      url: 'https://gist.motc.gov.tw/gist_api/V3/Map/Basic/City?$format=JSON',
+      headers: GetAuthorizationHeader()
+    });
+  }
+
+  // 取得所有觀光景點資料
+  function getAllScenicSpot() {
+    return axios({
+      method: 'get',
+      url: 'https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot?$top=30&$format=JSON',
+      headers: GetAuthorizationHeader()
+    });
+  }
+
+  // 取得指定[縣市]觀光景點資料
+  function getCurrentScenicSpot() {
+    return axios({
+      method: 'get',
+      url: 'https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/Taipei?$top=30&$format=JSON',
+      headers: GetAuthorizationHeader()
+    });
+  }
 
 
-  // https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/Taipei?$top=30&$format=JSON
-
-  // curl -X GET --header 'Accept: application/json' --header 'Authorization: hmac username="357ef1ea44234d1c823d64dd419f858f", algorithm="hmac-sha1", headers="x-date", signature="0/T1eZ/oW4a61jWK5odFmWD9dJ8="' --header 'x-date: Thu, 14 Oct 2021 08:23:04 GMT' --header 'Accept-Encoding: gzip' --compressed  'https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/Taipei?$top=30&$format=JSON'
-  
-
-  /*
-  APP ID：357ef1ea44234d1c823d64dd419f858f
-  APP Key：-T4OuGMlwg5zohpazKvoCV28F48
-  */
   const allAttractionsUrl = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot?$format=JSON';
   // const districtAttractionsUrl = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/Taipei?$top=30&$format=JSON';
-  const allCity = [
-    { 
-      enName: "Taipei",
-      cnName: "臺北市"
-    },
-    { 
-      enName: "NewTaipei",
-      cnName: "新北市"
-    },
-    { 
-      enName: "Keelung",
-      cnName: "基隆市"
-    },
-    { 
-      enName: "YilanCounty",
-      cnName: "宜蘭縣"
-    },
-    { 
-      enName: "Taoyuan",
-      cnName: "桃園市"
-    },
-    { 
-      enName: "Hsinchu",
-      cnName: "新竹市"
-    },
-    { 
-      enName: "HsinchuCounty",
-      cnName: "新竹縣"
-    },
-    { 
-      enName: "MiaoliCounty",
-      cnName: "苗栗縣"
-    },
-    { 
-      enName: "Chiayi",
-      cnName: "嘉義市"
-    },
-    { 
-      enName: "Taichung",
-      cnName: "臺中市"
-    },
-    { 
-      enName: "ChanghuaCounty",
-      cnName: "彰化縣"
-    },
-    { 
-      enName: "NantouCounty",
-      cnName: "南投縣"
-    },
-    { 
-      enName: "YunlinCounty",
-      cnName: "雲林縣"
-    },
-    { 
-      enName: "ChiayiCounty",
-      cnName: "嘉義縣"
-    },
-    { 
-      enName: "Tainan",
-      cnName: "臺南市"
-    },
-    { 
-      enName: "Kaohsiung",
-      cnName: "高雄市"
-    },
-    { 
-      enName: "PingtungCounty",
-      cnName: "屏東縣"
-    },
-    { 
-      enName: "HualienCounty",
-      cnName: "花蓮縣"
-    },
-    { 
-      enName: "TaitungCounty",
-      cnName: "臺東縣"
-    },
-    { 
-      enName: "KinmenCounty",
-      cnName: "金門縣"
-    },
-    { 
-      enName: "PenghuCounty",
-      cnName: "澎湖縣"
-    },
-    { 
-      enName: "LienchiangCounty",
-      cnName: "連江縣"
-    }
-  ];
 
 
   let app = {
     data() {
       return {
         allCity: allCity,
-        currentCity: "Taipei",
+        currentCity: 'Taipei',
         allAttractions: [], //全部景點
         districtAttractions: [], //分縣市景點
         cacheAllAttractions: [],
@@ -119,11 +68,11 @@
       };
     },
     template: `
-    <main>
+    <main id="app">
       <div class="search-content">
         <select name="areaSearch" class="search-content__area" v-model="currentCity" @change="changeCity">
-          <option value="縣市搜尋" disabled selected hidden>縣市搜尋</option>
-          <option :value="item.enName" v-for="(item, index) in allCity">{{item.cnName}}</option>
+          <option value="null" disabled selected hidden>縣市搜尋</option>
+          <option :value="item.City" v-for="(item, index) in allCity">{{item.CityName}}</option>
         </select>
         <input type="text" class="search-content__keyword" placeholder="搜尋">
       </div>

@@ -5,7 +5,24 @@ html, body{
   color: #333;
   word-wrap: break-word;
 }
+h1{ 
+  font-size: 5.8rem;
+}
+h2{ 
+  font-size: 3.3rem;
+}
+h3{ 
+  font-size: 2.4rem;
+}
 
 p{
-  font-size: 2rem;
+  font-size: 1.6rem;
+}
+
+img{
+  vertical-align: bottom;
+}
+
+i[class^="twicon"]{
+  font-size: 3rem;
 }

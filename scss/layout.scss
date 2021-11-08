@@ -1,9 +1,104 @@
 @import "init";
-@import "./layout/header";
-@import "./layout/main";
-@import "./layout/footer";
-
-.wrapper{
-  max-width: 1000px;
+body{
+  background-color: #f6f6f6;
+}
+.wrapper_box{
+  max-width: 1440px;
   margin: 0 auto;
+  .wrapper{
+    border: 1px solid red;
+  }
+}
+.main-menu{
+  // height: 56px;
+  height: 100vh;
+  position: relative;
+  background-color: #fff;
+  box-shadow: $box-shadow;
+  border-bottom: 1px solid map-get(map-get($color, grayscale), medium-grey);
+  .btn__switch{
+    width: 32px;
+    height: 32px;
+    background: map-get(map-get($color, primary), middle) url(/images/icons.png) no-repeat;
+    background-size: 240% auto;
+    background-position: 50% 3px;
+    border-radius: nth($border-radius, 1);
+    position: absolute;
+    left: 16px;
+    top: 16px;
+  }
+  .logo-taiwan-travel{ 
+    display: block;
+    width: 101px;
+    height: 40px;
+    background: url(/images/logo-taiwan-travel.png) no-repeat;
+    background-size: auto 100%;
+    position: absolute;
+    left: 50%;
+    top: 8px;
+    transform: translateX(-50%);
+  }
+  .search-content{
+    width: 100%;
+    position: absolute;
+    top: 75px;
+    &__area{
+      
+    }
+    &__btns{
+      display: none;
+    }
+    &__lists{
+      font-size: 1.8rem;
+      padding: 12px;
+      display: flex;
+      flex-wrap: wrap;
+
+    }
+    &__list{
+      width: 30%;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      border: 1px solid map-get(map-get($color, primary), dark);
+      border-radius: nth($border-radius, 1);
+      margin-bottom: 12px;
+      &:nth-of-type(2n){
+        // margin-left: 5%;
+        border-color: gold;
+      }
+    }
+    &__keyword{
+      display: none;
+    }
+  }
+  .type-menu{
+    display: none;
+  }
+}
+
+.header{
+  height: 152px;
+  background: #fff url(/images/master-vision.png) right bottom no-repeat;
+  background-size: auto 113px;
+  margin: 15px;
+  border-radius: nth($border-radius, 2);
+  box-shadow: $box-shadow;
+  position: relative;
+  > h1{
+    font-size: 3.3rem;
+    font-weight: 700;
+    line-height: 3.6rem;
+    position: absolute;
+    left: 24px;
+    top: 40px;
+  }
+}
+
+.footer{
+  height: 36px;
+  background-color: map-get(map-get($color, primary), dark);
+  font-size: 12px;
+  color: #fff;
+  @extend %flex_center;
 }
