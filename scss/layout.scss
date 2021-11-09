@@ -5,17 +5,43 @@ body{
 .wrapper_box{
   max-width: 1440px;
   margin: 0 auto;
+  @include media($desktop){
+    display: flex;
+  }
   .wrapper{
-    border: 1px solid red;
+    min-height: 100vh;
+    padding-top: 80px;
+    @include media($desktop){
+      width: 1038px;
+    }
+    @include media($desktop){
+      padding-top: 0px;
+    }
   }
 }
+
 .main-menu{
-  // height: 56px;
-  height: 100vh;
-  position: relative;
+  width: 100%;
+  height: 56px;
+  // height: 100vh;
   background-color: #fff;
-  box-shadow: $box-shadow;
-  border-bottom: 1px solid map-get(map-get($color, grayscale), medium-grey);
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  overflow-y: scroll;
+  // display: none;
+  @include media($desktop){
+    width: 354px;
+    height: 100vh;
+    position: relative;
+    flex-shrink: 0;
+  }
+  > header{
+    height: 56px;
+    border-bottom: 2px solid map-get(map-get($color, grayscale), medium-grey);
+    box-shadow: $box-shadow;
+  }
   .btn__switch{
     width: 32px;
     height: 32px;
@@ -25,7 +51,10 @@ body{
     border-radius: nth($border-radius, 1);
     position: absolute;
     left: 16px;
-    top: 16px;
+    top: 10px;
+    @include media($desktop){  
+      display: none;
+    }
   }
   .logo-taiwan-travel{ 
     display: block;
@@ -42,38 +71,211 @@ body{
     width: 100%;
     position: absolute;
     top: 75px;
+    display: none;
+    @include media($desktop){  
+      display: block;
+    }
     &__area{
+      // border: 1px solid red;
       
     }
     &__btns{
-      display: none;
+      margin: 0px 12px;
+      position: relative;
+    }
+    &__text{
+      @extend %form-item-reset;
+      width: 100%;
+      height: 43px;
+      line-height: 43px;
+      font-family: 'Noto Sans TC','Roboto', sans-serif;
+      font-size: 1.8rem;
+      border: 1px solid map-get(map-get($color, grayscale), dark-gray);
+      border-radius: nth($border-radius, 1);
+      padding: 0 12px;
+      color: map-get(map-get($color, grayscale), dark-gray);
+      &:focus{
+        color: map-get(map-get($color, grayscale), dark);
+      }
+    }
+    &__btn{
+      width: 20px;
+      height: 20px;
+      background-color: map-get(map-get($color, grayscale), light-gray);
+      position: absolute;
+      &--delete{
+        margin-left: 10px;
+        background: url(/images/icons.png) no-repeat;
+        background-size: auto 420%;
+        background-position: right 100%;
+        left: 45px;
+        top: 12px;
+      }
+      &--open{
+        margin-left: auto;
+        background: url(/images/icons.png) no-repeat;
+        background-size: auto 420%;
+        background-position: 0 68%;
+        right: 16px;
+        top: 13px;
+      }
     }
     &__lists{
       font-size: 1.8rem;
       padding: 12px;
       display: flex;
       flex-wrap: wrap;
-
+      // border: 1px solid red;
+      display: none;
     }
     &__list{
       width: 30%;
       height: 40px;
-      line-height: 40px;
+      line-height: 38px;
       text-align: center;
       border: 1px solid map-get(map-get($color, primary), dark);
       border-radius: nth($border-radius, 1);
-      margin-bottom: 12px;
-      &:nth-of-type(2n){
-        // margin-left: 5%;
-        border-color: gold;
+      margin-bottom: 12px;       
+      &:nth-of-type(3n+2), &:nth-of-type(3n+3){
+        margin-left: 5%;   
+        @include media($tablet-portrait){
+          margin-left: 0%;       
+        }
+      }
+      @include media($tablet-portrait){
+        width: 15%;
+        &:nth-of-type(6n+2), &:nth-of-type(6n+3), &:nth-of-type(6n+4), &:nth-of-type(6n+5), &:nth-of-type(6n+6){
+          margin-left: 2%;
+        }
+      }
+      @include media($desktop){
+        width: 48%;
+        &:nth-of-type(6n+2), &:nth-of-type(6n+3), &:nth-of-type(6n+4), &:nth-of-type(6n+5), &:nth-of-type(6n+6){
+          margin-left: 0%;
+        }
+        &:nth-of-type(2n){
+          margin-left: 4%;
+        }
+      }
+      &--current{
+        background-color: map-get(map-get($color, primary), dark);
+        color: #fff;
       }
     }
     &__keyword{
-      display: none;
+      margin: 12px;
+      position: relative;
+      > input{
+        @extend %form-item-reset;width: 100%;
+        height: 43px;
+        font-family: 'Noto Sans TC','Roboto', sans-serif;
+        font-size: 1.8rem;
+        border: 1px solid map-get(map-get($color, grayscale), dark-gray);
+        border-radius: nth($border-radius, 1);
+        padding: 0 12px;
+      }
+      > button{        
+        @extend %form-item-reset;
+        width: 20px;
+        height: 20px;
+        background: url(/images/icons.png) no-repeat;
+        background-size: 300% auto;
+        background-position: 100% 65%;
+        position: absolute;
+        right: 12px;
+        top: 10px;
+      }
+    }
+    &__submit{
+      width: 100%;
+      background-color: #fff;
+      padding: 12px;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      z-index: 10;
+      @include media($desktop){
+        position: sticky;
+      }
+      > button{
+        @extend %form-item-reset;
+        width: 100%;
+        height: 46px;
+        color: #fff;
+        font-family: 'Noto Sans TC','Roboto', sans-serif;
+        font-size: 1.6rem;
+        border-radius: nth($border-radius, 1);
+        background-color: map-get(map-get($color, primary), dark);
+      }      
     }
   }
-  .type-menu{
-    display: none;
+  .type-menu{    
+    margin: 0px 12px 200px 12px;
+    @include media($desktop){
+      margin: 0px 12px;
+    }
+    &__title{
+      font-size: 1.8rem;
+      list-style: 2.4rem;
+      font-weight: 700;
+    }
+    &__lists{
+      display: flex;
+      flex-wrap: wrap;
+    }
+    &__list{
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 1.6rem;
+      padding: 10px 0;
+      margin-bottom: 10px;
+      @include media($tablet-portrait){
+        width: 25%;
+      }
+      @include media($desktop){
+        width: 50%;
+      }
+      &--current{
+        border: 1px solid map-get(map-get($color, primary), dark);
+        border-radius: nth($border-radius, 2);
+      }
+      > i[class^="twicon"]{
+        width: 70px;
+        height: 70px;
+        line-height: 65px;
+        font-size: 4.8rem;
+        color: #fff;
+        text-align: center;
+        border-radius: 50%;
+        margin-bottom: 5px;
+      }
+      .twicon-zeelandia{
+        background-color: map-get(map-get($color, primary), dark);
+      }
+      .twicon-youbike{
+        background-color: map-get(map-get($color, other), color-1);
+      }
+      .twicon-xingtian-tmp{
+        background-color: map-get(map-get($color, other), color-2);
+      }
+      .twicon-sky-lantern{
+        background-color: map-get(map-get($color, other), color-3);
+      }
+      .twicon-queens-head{
+        background-color: map-get(map-get($color, other), color-4);
+      }
+      .twicon-tapioca{
+        background-color: map-get(map-get($color, other), color-5);
+      }
+      .twicon-grand-hotel{
+        background-color: map-get(map-get($color, other), color-6);
+      }
+      .twicon-balloon{
+        background-color: map-get(map-get($color, other), color-7);
+      }
+    }
   }
 }
 
@@ -81,10 +283,20 @@ body{
   height: 152px;
   background: #fff url(/images/master-vision.png) right bottom no-repeat;
   background-size: auto 113px;
-  margin: 15px;
+  margin: 0px 15px 15px 15px;
   border-radius: nth($border-radius, 2);
   box-shadow: $box-shadow;
   position: relative;
+  @include media($tablet-portrait){
+    height: 255px;
+    background-size: auto 230px;
+    background-position-x: 98%;
+  }
+  @include media($desktop){
+    height: 335px;
+    background-size: auto 326px;
+    border-radius: 0px 0px nth($border-radius, 2) nth($border-radius, 2);
+  }
   > h1{
     font-size: 3.3rem;
     font-weight: 700;
@@ -92,6 +304,15 @@ body{
     position: absolute;
     left: 24px;
     top: 40px;
+    @include media($tablet-portrait){
+      font-size: 5.8rem;
+      line-height: 7.2rem;
+      left: 28px;
+      top: 55px;
+    }
+    @include media($desktop){
+      top: 95px;
+    }
   }
 }
 
@@ -101,4 +322,8 @@ body{
   font-size: 12px;
   color: #fff;
   @extend %flex_center;
+  @include media($desktop){
+    border-radius: nth($border-radius, 2) nth($border-radius, 2) 0px 0px;
+    margin: 0 12px;
+  }
 }

@@ -1,1 +1,24 @@
 @import "./init";
+@import "init";
+.list-1{
+  padding-left: 12px;
+  border: 1px solid red;
+  &__title{
+    width: 100%;
+    border: 1px solid green;
+    // flex-shrink: 0;
+  }
+  &__location{
+
+  }
+  &__link{
+    font-size: 2.4rem;
+  }
+  &__more-link{
+
+  }
+  &__inner{    
+    flex-shrink: 0;
+    border: 1px solid blue;
+  }
+}

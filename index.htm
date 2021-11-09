@@ -12,44 +12,46 @@
   <link rel="stylesheet" href="./css/components.css">
 </head>
 <body>
-  <div class="wrapper_box" d="app">
+  <div class="wrapper_box" id="app">
     <div class="main-menu">
-      <a class="logo-taiwan-travel" href="#"></a>
-      <div class="btn__switch"></div>
+      <header>
+        <a class="logo-taiwan-travel" href="#"></a>
+        <div class="btn__switch"></div>
+      </header>
       <div class="search-content">
         <div class="search-content__area">
           <div class="search-content__btns">
-            <div class="search-content__text"></div>
+            <input type="text" class="search-content__text" value="基隆">
             <div class="search-content__btn search-content__btn--delete"></div>
             <div class="search-content__btn search-content__btn--open"></div>
           </div>
           <ul class="search-content__lists">
             <li class="search-content__list">基隆</li>
-          <li class="search-content__list">台北</li>
-          <li class="search-content__list">新北</li>
-          <li class="search-content__list">桃園</li>
-          <li class="search-content__list">新竹</li>
-          <li class="search-content__list">苗栗</li>
-          <li class="search-content__list">台中</li>
-          <li class="search-content__list">彰化</li>
-          <li class="search-content__list">雲林</li>
-          <li class="search-content__list">南投</li>
-          <li class="search-content__list search-content__list--current">嘉義</li>
-          <li class="search-content__list">台南</li>
-          <li class="search-content__list">高雄</li>
-          <li class="search-content__list">屏東</li>
-          <li class="search-content__list">台東</li>
-          <li class="search-content__list">花蓮</li>
-          <li class="search-content__list">澎湖</li>
-          <li class="search-content__list">綠島</li>
-          <li class="search-content__list">蘭嶼</li>
-          <li class="search-content__list">小琉球</li>
-          <li class="search-content__list">金門</li>
-          <li class="search-content__list">馬祖</li>
+            <li class="search-content__list">台北</li>
+            <li class="search-content__list">新北</li>
+            <li class="search-content__list">桃園</li>
+            <li class="search-content__list">新竹</li>
+            <li class="search-content__list">苗栗</li>
+            <li class="search-content__list">台中</li>
+            <li class="search-content__list">彰化</li>
+            <li class="search-content__list">雲林</li>
+            <li class="search-content__list">南投</li>
+            <li class="search-content__list search-content__list--current">嘉義</li>
+            <li class="search-content__list">台南</li>
+            <li class="search-content__list">高雄</li>
+            <li class="search-content__list">屏東</li>
+            <li class="search-content__list">台東</li>
+            <li class="search-content__list">花蓮</li>
+            <li class="search-content__list">澎湖</li>
+            <li class="search-content__list">綠島</li>
+            <li class="search-content__list">蘭嶼</li>
+            <li class="search-content__list">小琉球</li>
+            <li class="search-content__list">金門</li>
+            <li class="search-content__list">馬祖</li>
           </ul>
         </div>
         <div class="search-content__keyword">
-          <input type="text">
+          <input type="text" placeholder="搜尋關鍵字">
           <button type="submit"></button>
         </div>
         <div class="type-menu">
@@ -65,13 +67,68 @@
             <li class="type-menu__list"><i class="twicon-balloon"></i>觀光活動</li>
           </ul>
         </div>
+        <div class="search-content__submit">
+          <button type="submit">開始搜尋</button>
+        </div>        
       </div>
     </div>
     <div class="wrapper">
       <header class="header">
         <h1>探索。<br>福爾摩沙</h1>      
       </header>
-      <main class="main">main</main>
+      <main class="main">
+        <div class="list-1">
+          <h3 class="list-1__title"><i class="list-1__location"></i><a class="list-1__link" href="#">熱門景點</a><a class="list-1__more-link" href=""></a></h3>
+          <!-- 組 -->
+          <div class="list-1__item">
+            <div class="list-1__pic">
+              <i class="list-1__link"></i>
+              <img class="list-1__img" src="/images/pic01.jpg" alt="">
+            </div>
+            <div class="list-1__content">
+              <h2 class="list-1__title"><a href="#">2021臺北燈節</a></h2>
+              <p><i class="list-1__time"></i>2021-12-17 ~ 2021-12-26</p>
+              <p><i class="list-1__location"></i>臺北市 萬華區</p>
+            </div>
+          </div>
+          <!-- 組 -->
+          <div class="list-1__item">
+            <div class="list-1__pic">
+              <i class="list-1__link"></i>
+              <img class="list-1__img" src="/images/pic01.jpg" alt="">
+            </div>
+            <div class="list-1__content">
+              <h2 class="list-1__title"><a href="#">2021臺北燈節</a></h2>
+              <p><i class="list-1__time"></i>2021-12-17 ~ 2021-12-26</p>
+              <p><i class="list-1__location"></i>臺北市 萬華區</p>
+            </div>
+          </div>
+          <!-- 組 -->
+          <div class="list-1__item">
+            <div class="list-1__pic">
+              <i class="list-1__link"></i>
+              <img class="list-1__img" src="/images/pic01.jpg" alt="">
+            </div>
+            <div class="list-1__content">
+              <h2 class="list-1__title"><a href="#">2021臺北燈節</a></h2>
+              <p><i class="list-1__time"></i>2021-12-17 ~ 2021-12-26</p>
+              <p><i class="list-1__location"></i>臺北市 萬華區</p>
+            </div>
+          </div>
+          <!-- 組 -->
+          <div class="list-1__item">
+            <div class="list-1__pic">
+              <i class="list-1__link"></i>
+              <img class="list-1__img" src="/images/pic01.jpg" alt="">
+            </div>
+            <div class="list-1__content">
+              <h2 class="list-1__title"><a href="#">2021臺北燈節</a></h2>
+              <p><i class="list-1__time"></i>2021-12-17 ~ 2021-12-26</p>
+              <p><i class="list-1__location"></i>臺北市 萬華區</p>
+            </div>
+          </div>          
+        </div>
+      </main>
       <footer class="footer">TAIWAN TRAVEL</footer>
     </div>
 
