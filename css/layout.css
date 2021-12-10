@@ -50,6 +50,8 @@ i[class^="twicon"] { font-size: 3rem; }
 
 .main-menu .search-content__text, .main-menu .search-content__keyword > input, .main-menu .search-content__keyword > button, .main-menu .search-content__submit > button { border: none; outline: none; -webkit-appearance: none; -moz-appearance: none; appearance: none; }
 
+a:link, a:visited { color: #222222; text-decoration: none; }
+
 body { background-color: #f6f6f6; }
 
 .wrapper_box { max-width: 1440px; margin: 0 auto; }
@@ -62,21 +64,25 @@ body { background-color: #f6f6f6; }
 
 @media (min-width: 1200px) { .wrapper_box .wrapper { padding-top: 0px; } }
 
-.main-menu { width: 100%; height: 56px; background-color: #fff; position: fixed; left: 0; top: 0; z-index: 10; overflow-y: scroll; }
+.main-menu { width: 100%; height: 56px; background-color: #fff; position: fixed; left: 0; top: 0; z-index: 20; overflow-y: scroll; }
 
-@media (min-width: 1200px) { .main-menu { width: 354px; height: 100vh; position: relative; -ms-flex-negative: 0; flex-shrink: 0; } }
+.main-menu.is-active { height: 100vh; }
+
+@media (min-width: 1200px) { .main-menu { width: 354px; height: auto; overflow-y: auto; position: relative; -ms-flex-negative: 0; flex-shrink: 0; } }
 
 .main-menu > header { height: 56px; border-bottom: 2px solid #ebebeb; -webkit-box-shadow: 0px 14px 24px rgba(0, 0, 0, 0.04); box-shadow: 0px 14px 24px rgba(0, 0, 0, 0.04); }
 
-.main-menu .btn__switch { width: 32px; height: 32px; background: #d9efea url(/images/icons.png) no-repeat; background-size: 240% auto; background-position: 50% 3px; border-radius: 8px; position: absolute; left: 16px; top: 10px; }
+.main-menu .btn__switch { width: 32px; height: 32px; background: #d9efea url(../images/icons.png) no-repeat; background-size: 240% auto; background-position: 50% 3px; border-radius: 8px; position: absolute; left: 16px; top: 10px; }
 
 @media (min-width: 1200px) { .main-menu .btn__switch { display: none; } }
 
-.main-menu .logo-taiwan-travel { display: block; width: 101px; height: 40px; background: url(/images/logo-taiwan-travel.png) no-repeat; background-size: auto 100%; position: absolute; left: 50%; top: 8px; -webkit-transform: translateX(-50%); transform: translateX(-50%); }
+.main-menu .logo-taiwan-travel { display: block; width: 101px; height: 40px; background: url(../images/logo-taiwan-travel.png) no-repeat; background-size: auto 100%; position: absolute; left: 50%; top: 8px; -webkit-transform: translateX(-50%); transform: translateX(-50%); }
 
-.main-menu .search-content { width: 100%; position: absolute; top: 75px; display: none; }
+.main-menu .search-content { width: 100%; max-height: 0; overflow: hidden; position: absolute; top: 75px; -webkit-transition: max-height 0.8s ease-out; transition: max-height 0.8s ease-out; }
 
-@media (min-width: 1200px) { .main-menu .search-content { display: block; } }
+.main-menu .search-content.is-active { max-height: 1500px; }
+
+@media (min-width: 1200px) { .main-menu .search-content { display: block; max-height: unset; } }
 
 .main-menu .search-content__btns { margin: 0px 12px; position: relative; }
 
@@ -86,11 +92,13 @@ body { background-color: #f6f6f6; }
 
 .main-menu .search-content__btn { width: 20px; height: 20px; background-color: #fafafa; position: absolute; }
 
-.main-menu .search-content__btn--delete { margin-left: 10px; background: url(/images/icons.png) no-repeat; background-size: auto 420%; background-position: right 100%; left: 45px; top: 12px; }
+.main-menu .search-content__btn--delete { margin-left: 10px; background: url(../images/icons.png) no-repeat; background-size: auto 420%; background-position: right 100%; left: 45px; top: 12px; }
 
-.main-menu .search-content__btn--open { margin-left: auto; background: url(/images/icons.png) no-repeat; background-size: auto 420%; background-position: 0 68%; right: 16px; top: 13px; }
+.main-menu .search-content__btn--open { margin-left: auto; background: url(../images/icons.png) no-repeat; background-size: auto 420%; background-position: 0 68%; right: 16px; top: 13px; }
 
-.main-menu .search-content__lists { font-size: 1.8rem; padding: 12px; display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; display: none; }
+.main-menu .search-content__lists { font-size: 1.8rem; display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; max-height: 0; overflow: hidden; -webkit-transition: max-height 0.3s ease-out, padding 0s 0.2s linear; transition: max-height 0.3s ease-out, padding 0s 0.2s linear; }
+
+.main-menu .search-content__lists.is-active { padding: 12px; max-height: 1500px; }
 
 .main-menu .search-content__list { width: 30%; height: 40px; line-height: 38px; text-align: center; border: 1px solid #3FB195; border-radius: 8px; margin-bottom: 12px; }
 
@@ -111,11 +119,13 @@ body { background-color: #f6f6f6; }
 
 .main-menu .search-content__keyword > input { width: 100%; height: 43px; font-family: 'Noto Sans TC','Roboto', sans-serif; font-size: 1.8rem; border: 1px solid #9e9e9e; border-radius: 8px; padding: 0 12px; }
 
-.main-menu .search-content__keyword > button { width: 20px; height: 20px; background: url(/images/icons.png) no-repeat; background-size: 300% auto; background-position: 100% 65%; position: absolute; right: 12px; top: 10px; }
+.main-menu .search-content__keyword > button { width: 20px; height: 20px; background: url(../images/icons.png) no-repeat; background-size: 300% auto; background-position: 100% 65%; position: absolute; right: 12px; top: 10px; }
 
-.main-menu .search-content__submit { width: 100%; background-color: #fff; padding: 12px; position: fixed; bottom: 0; left: 0; z-index: 10; }
+.main-menu .search-content__submit { width: 100%; background-color: #fff; padding: 12px; position: fixed; bottom: 0; left: 0; z-index: 10; display: none; }
 
-@media (min-width: 1200px) { .main-menu .search-content__submit { position: -webkit-sticky; position: sticky; } }
+.main-menu .search-content__submit.is-active { display: block; }
+
+@media (min-width: 1200px) { .main-menu .search-content__submit { display: block; position: -webkit-sticky; position: sticky; } }
 
 .main-menu .search-content__submit > button { width: 100%; height: 46px; color: #fff; font-family: 'Noto Sans TC','Roboto', sans-serif; font-size: 1.6rem; border-radius: 8px; background-color: #3FB195; }
 
@@ -127,13 +137,17 @@ body { background-color: #f6f6f6; }
 
 .main-menu .type-menu__lists { display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; }
 
-.main-menu .type-menu__list { width: 50%; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -ms-flex-align: center; align-items: center; font-size: 1.6rem; padding: 10px 0; margin-bottom: 10px; }
+.main-menu .type-menu__list { width: 50%; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -ms-flex-align: center; align-items: center; font-size: 1.6rem; cursor: pointer; padding: 10px 0; margin-bottom: 10px; }
 
 @media (min-width: 600px) { .main-menu .type-menu__list { width: 25%; } }
 
 @media (min-width: 1200px) { .main-menu .type-menu__list { width: 50%; } }
 
 .main-menu .type-menu__list--current { border: 1px solid #3FB195; border-radius: 12px; }
+
+.main-menu .type-menu__list:hover { font-weight: 700; }
+
+.main-menu .type-menu__list:hover > i { -webkit-filter: saturate(200%); filter: saturate(200%); }
 
 .main-menu .type-menu__list > i[class^="twicon"] { width: 70px; height: 70px; line-height: 65px; font-size: 4.8rem; color: #fff; text-align: center; border-radius: 50%; margin-bottom: 5px; }
 
@@ -153,7 +167,7 @@ body { background-color: #f6f6f6; }
 
 .main-menu .type-menu__list .twicon-balloon { background-color: #8FCA6B; }
 
-.header { height: 152px; background: #fff url(/images/master-vision.png) right bottom no-repeat; background-size: auto 113px; margin: 0px 15px 15px 15px; border-radius: 12px; -webkit-box-shadow: 0px 14px 24px rgba(0, 0, 0, 0.04); box-shadow: 0px 14px 24px rgba(0, 0, 0, 0.04); position: relative; }
+.header { height: 152px; background: #fff url(../images/master-vision.png) right bottom no-repeat; background-size: auto 113px; margin: 0px 15px 40px 15px; border-radius: 12px; -webkit-box-shadow: 0px 14px 24px rgba(0, 0, 0, 0.04); box-shadow: 0px 14px 24px rgba(0, 0, 0, 0.04); position: relative; }
 
 @media (min-width: 600px) { .header { height: 255px; background-size: auto 230px; background-position-x: 98%; } }
 

@@ -1,4 +1,13 @@
 @import "init";
+a{
+  &:link, &:visited{
+    color: map-get(map-get($color, grayscale), dark);
+    text-decoration: none;
+  }
+  &:hover, &:active{
+    
+  }
+}
 body{
   background-color: #f6f6f6;
 }
@@ -23,17 +32,20 @@ body{
 .main-menu{
   width: 100%;
   height: 56px;
-  // height: 100vh;
   background-color: #fff;
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 10;
+  z-index: 20;
   overflow-y: scroll;
+  &.is-active{
+    height: 100vh;
+  }
   // display: none;
   @include media($desktop){
     width: 354px;
-    height: 100vh;
+    height: auto;
+    overflow-y: auto;
     position: relative;
     flex-shrink: 0;
   }
@@ -45,7 +57,7 @@ body{
   .btn__switch{
     width: 32px;
     height: 32px;
-    background: map-get(map-get($color, primary), middle) url(/images/icons.png) no-repeat;
+    background: map-get(map-get($color, primary), middle) url(../images/icons.png) no-repeat;
     background-size: 240% auto;
     background-position: 50% 3px;
     border-radius: nth($border-radius, 1);
@@ -60,7 +72,7 @@ body{
     display: block;
     width: 101px;
     height: 40px;
-    background: url(/images/logo-taiwan-travel.png) no-repeat;
+    background: url(../images/logo-taiwan-travel.png) no-repeat;
     background-size: auto 100%;
     position: absolute;
     left: 50%;
@@ -69,11 +81,17 @@ body{
   }
   .search-content{
     width: 100%;
+    max-height: 0;
+    overflow: hidden;
     position: absolute;
     top: 75px;
-    display: none;
+    transition: max-height 0.8s ease-out;
+    &.is-active{
+      max-height: 1500px;
+    }
     @include media($desktop){  
       display: block;
+      max-height: unset;
     }
     &__area{
       // border: 1px solid red;
@@ -105,7 +123,7 @@ body{
       position: absolute;
       &--delete{
         margin-left: 10px;
-        background: url(/images/icons.png) no-repeat;
+        background: url(../images/icons.png) no-repeat;
         background-size: auto 420%;
         background-position: right 100%;
         left: 45px;
@@ -113,7 +131,7 @@ body{
       }
       &--open{
         margin-left: auto;
-        background: url(/images/icons.png) no-repeat;
+        background: url(../images/icons.png) no-repeat;
         background-size: auto 420%;
         background-position: 0 68%;
         right: 16px;
@@ -122,11 +140,15 @@ body{
     }
     &__lists{
       font-size: 1.8rem;
-      padding: 12px;
       display: flex;
       flex-wrap: wrap;
-      // border: 1px solid red;
-      display: none;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out, padding 0s 0.2s linear;
+      &.is-active{
+        padding: 12px;
+        max-height: 1500px;
+      }
     }
     &__list{
       width: 30%;
@@ -178,7 +200,7 @@ body{
         @extend %form-item-reset;
         width: 20px;
         height: 20px;
-        background: url(/images/icons.png) no-repeat;
+        background: url(../images/icons.png) no-repeat;
         background-size: 300% auto;
         background-position: 100% 65%;
         position: absolute;
@@ -194,7 +216,12 @@ body{
       bottom: 0;
       left: 0;
       z-index: 10;
+      display: none;
+      &.is-active{
+        display: block;
+      }
       @include media($desktop){
+        display: block;
         position: sticky;
       }
       > button{
@@ -229,6 +256,7 @@ body{
       flex-direction: column;
       align-items: center;
       font-size: 1.6rem;
+      cursor: pointer;
       padding: 10px 0;
       margin-bottom: 10px;
       @include media($tablet-portrait){
@@ -240,6 +268,12 @@ body{
       &--current{
         border: 1px solid map-get(map-get($color, primary), dark);
         border-radius: nth($border-radius, 2);
+      }
+      &:hover{
+        > i{
+          filter: saturate(200%);
+        }
+        font-weight: 700;
       }
       > i[class^="twicon"]{
         width: 70px;
@@ -274,16 +308,16 @@ body{
       }
       .twicon-balloon{
         background-color: map-get(map-get($color, other), color-7);
-      }
+      } 
     }
   }
 }
 
 .header{
   height: 152px;
-  background: #fff url(/images/master-vision.png) right bottom no-repeat;
+  background: #fff url(../images/master-vision.png) right bottom no-repeat;
   background-size: auto 113px;
-  margin: 0px 15px 15px 15px;
+  margin: 0px 15px 40px 15px;
   border-radius: nth($border-radius, 2);
   box-shadow: $box-shadow;
   position: relative;

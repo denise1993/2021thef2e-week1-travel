@@ -2,24 +2,222 @@
 @import "init";
 .list-1{
   padding-left: 12px;
-  border: 1px solid red;
+  margin-bottom: 40px;
   &__title{
     width: 100%;
-    border: 1px solid green;
-    // flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
   }
-  &__location{
-
+  &__icon-location{
+    display: block;
+    width: 25px;
+    height: 25px;
+    background: url(../images/icons.png) no-repeat;
+    background-size: 300% auto;
+    background-position: 0 0;
+    margin-right: 5px;
   }
   &__link{
+    display: block;
     font-size: 2.4rem;
+    font-weight: 700;
   }
   &__more-link{
-
+    display: block;
+    font-size: 1.6rem;
+    padding-right: 10px;
+    margin-left: auto;
+    &:link, &:visited{
+      color: map-get(map-get($color, primary), dark);
+    }
   }
   &__inner{    
     flex-shrink: 0;
-    border: 1px solid blue;
-    
+    display: flex;
+    overflow-y: auto;
   }
+  &__item{
+    width: 254px;
+    background-color: #fff;
+    border-radius: nth($border-radius, 3);
+    margin-right: 24px;
+    @include media($desktop){
+      width: calc(100% / 3);
+      margin-right: unset;
+      + #{&}{
+        margin-left: 24px;
+      }
+    }
+  }
+  &__pic{
+    width: 256px;
+    height: 163px;
+    border-radius: nth($border-radius, 3) nth($border-radius, 3) 0 0; 
+    overflow: hidden;
+    position: relative;
+    @include media($desktop){
+      width: 100%;
+      height: 185px;
+    }
+  }
+  &__icon-link{
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: nth($border-radius, 2);
+    background-color: rgba(217, 239, 234, 0.6);
+    background-image: url(../images/icons.png);
+    background-repeat: no-repeat;
+    background-size: 280% auto;
+    background-position: 105% 0;
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    z-index: 10;
+  }
+  &__img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  &__content{
+    padding: 8px 16px;
+  }
+  &__name{
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+  &__time{
+    display: flex;
+    > i{
+      flex-shrink: 0;
+      display: block;
+      width: 22px;
+      height: 22px;
+      background: url(../images/icons.png) no-repeat;
+      background-size: 300% auto;
+      background-position: 50% 100%; 
+      margin-right: 5px;
+      margin-top: 4px;
+    }
+  }
+  &__location{
+    display: flex;
+    > i{
+      flex-shrink: 0;
+      display: block;
+      width: 22px;
+      height: 22px;
+      background: url(../images/icons.png) no-repeat;
+      background-size: 300% auto;
+      background-position: 50% 70%;
+      margin-right: 5px;
+      margin-top: 4px;
+    }
+  }
+  
+}
+
+.list-2{
+  padding: 0px 12px;
+  margin-bottom: 40px;
+  &__title{
+    width: 100%;
+    font-size: 3.3rem;
+    font-weight: 800;
+    margin-bottom: 16px;
+  }
+  &__inner{    
+    display: flex;
+    flex-direction: column;
+    border: 1px solid blue;
+    @include media($tablet-portrait){
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  }
+  &__item{
+    width: 100%;
+    // align-items: stretch;
+    background-color: #fff;
+    border-radius: nth($border-radius, 3);
+    margin-bottom: 24px;
+    @include media($tablet-portrait){
+      border: 3px solid green;
+      width: calc((100% - 34px) / 3);
+      &:nth-of-type(3n+2), &:nth-of-type(3n+3){
+        margin-left: 17px;
+        border: 3px solid gold;
+      }
+    }
+  }
+  &__pic{
+    height: calc( (3 / 4) * 100% );
+    border-radius: nth($border-radius, 3) nth($border-radius, 3) 0 0; 
+    overflow: hidden;
+    position: relative;
+    @include media($tablet-portrait){
+      height: calc( (9 / 16) * 100% );
+      border: 3px solid teal;
+      // width: 100%;
+      // height: 185px;
+    }
+  }
+  &__icon-link{
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: nth($border-radius, 2);
+    background-color: rgba(217, 239, 234, 0.6);
+    background-image: url(../images/icons.png);
+    background-repeat: no-repeat;
+    background-size: 280% auto;
+    background-position: 105% 0;
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    z-index: 10;
+  }
+  &__img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  &__content{
+    padding: 8px 16px;
+  }
+  &__name{
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+  &__time{
+    display: flex;
+    > i{
+      flex-shrink: 0;
+      display: block;
+      width: 22px;
+      height: 22px;
+      background: url(../images/icons.png) no-repeat;
+      background-size: 300% auto;
+      background-position: 50% 100%; 
+      margin-right: 5px;
+      margin-top: 4px;
+    }
+  }
+  &__location{
+    display: flex;
+    > i{
+      flex-shrink: 0;
+      display: block;
+      width: 22px;
+      height: 22px;
+      background: url(../images/icons.png) no-repeat;
+      background-size: 300% auto;
+      background-position: 50% 70%;
+      margin-right: 5px;
+      margin-top: 4px;
+    }
+  }
+  
 }

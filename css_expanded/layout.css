@@ -222,6 +222,11 @@ i[class^="twicon"] {
   appearance: none;
 }
 
+a:link, a:visited {
+  color: #222222;
+  text-decoration: none;
+}
+
 body {
   background-color: #f6f6f6;
 }
@@ -263,14 +268,19 @@ body {
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 10;
+  z-index: 20;
   overflow-y: scroll;
+}
+
+.main-menu.is-active {
+  height: 100vh;
 }
 
 @media (min-width: 1200px) {
   .main-menu {
     width: 354px;
-    height: 100vh;
+    height: auto;
+    overflow-y: auto;
     position: relative;
     -ms-flex-negative: 0;
         flex-shrink: 0;
@@ -287,7 +297,7 @@ body {
 .main-menu .btn__switch {
   width: 32px;
   height: 32px;
-  background: #d9efea url(/images/icons.png) no-repeat;
+  background: #d9efea url(../images/icons.png) no-repeat;
   background-size: 240% auto;
   background-position: 50% 3px;
   border-radius: 8px;
@@ -306,7 +316,7 @@ body {
   display: block;
   width: 101px;
   height: 40px;
-  background: url(/images/logo-taiwan-travel.png) no-repeat;
+  background: url(../images/logo-taiwan-travel.png) no-repeat;
   background-size: auto 100%;
   position: absolute;
   left: 50%;
@@ -317,14 +327,22 @@ body {
 
 .main-menu .search-content {
   width: 100%;
+  max-height: 0;
+  overflow: hidden;
   position: absolute;
   top: 75px;
-  display: none;
+  -webkit-transition: max-height 0.8s ease-out;
+  transition: max-height 0.8s ease-out;
+}
+
+.main-menu .search-content.is-active {
+  max-height: 1500px;
 }
 
 @media (min-width: 1200px) {
   .main-menu .search-content {
     display: block;
+    max-height: unset;
   }
 }
 
@@ -358,7 +376,7 @@ body {
 
 .main-menu .search-content__btn--delete {
   margin-left: 10px;
-  background: url(/images/icons.png) no-repeat;
+  background: url(../images/icons.png) no-repeat;
   background-size: auto 420%;
   background-position: right 100%;
   left: 45px;
@@ -367,7 +385,7 @@ body {
 
 .main-menu .search-content__btn--open {
   margin-left: auto;
-  background: url(/images/icons.png) no-repeat;
+  background: url(../images/icons.png) no-repeat;
   background-size: auto 420%;
   background-position: 0 68%;
   right: 16px;
@@ -376,13 +394,20 @@ body {
 
 .main-menu .search-content__lists {
   font-size: 1.8rem;
-  padding: 12px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  display: none;
+  max-height: 0;
+  overflow: hidden;
+  -webkit-transition: max-height 0.3s ease-out, padding 0s 0.2s linear;
+  transition: max-height 0.3s ease-out, padding 0s 0.2s linear;
+}
+
+.main-menu .search-content__lists.is-active {
+  padding: 12px;
+  max-height: 1500px;
 }
 
 .main-menu .search-content__list {
@@ -449,7 +474,7 @@ body {
 .main-menu .search-content__keyword > button {
   width: 20px;
   height: 20px;
-  background: url(/images/icons.png) no-repeat;
+  background: url(../images/icons.png) no-repeat;
   background-size: 300% auto;
   background-position: 100% 65%;
   position: absolute;
@@ -465,10 +490,16 @@ body {
   bottom: 0;
   left: 0;
   z-index: 10;
+  display: none;
+}
+
+.main-menu .search-content__submit.is-active {
+  display: block;
 }
 
 @media (min-width: 1200px) {
   .main-menu .search-content__submit {
+    display: block;
     position: -webkit-sticky;
     position: sticky;
   }
@@ -521,6 +552,7 @@ body {
       -ms-flex-align: center;
           align-items: center;
   font-size: 1.6rem;
+  cursor: pointer;
   padding: 10px 0;
   margin-bottom: 10px;
 }
@@ -540,6 +572,15 @@ body {
 .main-menu .type-menu__list--current {
   border: 1px solid #3FB195;
   border-radius: 12px;
+}
+
+.main-menu .type-menu__list:hover {
+  font-weight: 700;
+}
+
+.main-menu .type-menu__list:hover > i {
+  -webkit-filter: saturate(200%);
+          filter: saturate(200%);
 }
 
 .main-menu .type-menu__list > i[class^="twicon"] {
@@ -587,9 +628,9 @@ body {
 
 .header {
   height: 152px;
-  background: #fff url(/images/master-vision.png) right bottom no-repeat;
+  background: #fff url(../images/master-vision.png) right bottom no-repeat;
   background-size: auto 113px;
-  margin: 0px 15px 15px 15px;
+  margin: 0px 15px 40px 15px;
   border-radius: 12px;
   -webkit-box-shadow: 0px 14px 24px rgba(0, 0, 0, 0.04);
           box-shadow: 0px 14px 24px rgba(0, 0, 0, 0.04);
